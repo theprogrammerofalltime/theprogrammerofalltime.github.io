@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Fastfetch — Lynx</title><link rel="stylesheet" href="css/style.css"></head><body data-terminal-command="fastfetch" data-active-tab="fastfetch"><div class="terminal-desktop"><aside class="terminal-sidebar"><div class="sidebar-brand"><span class="brand-mark">⌁</span><div><strong>lynx@web</strong><small>terminal desktop</small></div></div><div class="sidebar-section-label">SESSIONS</div><nav class="site-nav"><a href="index.html"><span class="nav-index">01</span><span>welcome</span></a>
+<a href="home.html" class="active"><span class="nav-index">02</span><span>fastfetch</span></a>
+<a href="about.html"><span class="nav-index">03</span><span>about</span></a>
+<a href="projects.html"><span class="nav-index">04</span><span>projects</span></a>
+<a href="portfolio.html"><span class="nav-index">05</span><span>portfolio</span></a>
+<a href="alt-history/index.html" class="nav-special"><span class="nav-index">06</span><span>archive</span></a></nav><div class="sidebar-spacer"></div><div class="sidebar-help"><span>↑↓</span> navigate<br><span>↵</span> open session</div></aside><div class="terminal-stage"><header class="stage-bar"><span class="stage-title">tty1</span><span class="stage-path">~/fastfetch</span><span class="stage-state">● ONLINE</span></header><main><section class="terminal-window page-window fastfetch-window">
+    <div class="terminal-titlebar">
+      <span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-dot"></span>
+      <span class="terminal-path"><strong>lynx@web</strong>:~</span>
+    </div>
+    <div class="terminal-body">
+    <div class="fastfetch-body" id="fastfetch-body">
+      <div class="prompt-line" id="prompt-line">
+        <span class="prompt">[lynx@web ~]$</span> <span class="cmd" id="typed-cmd"></span><span class="cursor" id="cursor">█</span>
+      </div>
+      <div class="fastfetch-output" id="fastfetch-output" hidden></div>
+    </div>
+      </div>
+  </section></main><footer><div class="footer-terminal">github pages · static site · no build system required</div></footer></div></div>
+<script>
+(function () {
+  const cmdEl    = document.getElementById('typed-cmd');
+  const cursorEl = document.getElementById('cursor');
+  const outputEl = document.getElementById('fastfetch-output');
+  const afterEl  = document.getElementById('home-after');
+  const command  = 'fastfetch';
+
+  // Uptime origin: 2 November 2007
+  const birth = new Date(Date.UTC(2007, 10, 2));
+
+  function formatUptime() {
+    const now = new Date();
+    let years  = now.getUTCFullYear() - birth.getUTCFullYear();
+    let months = now.getUTCMonth()    - birth.getUTCMonth();
+    let days   = now.getUTCDate()     - birth.getUTCDate();
+
+    if (days < 0) {
+      months -= 1;
+      const prev = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 0));
+      days += prev.getUTCDate();
+    }
+    if (months < 0) {
+      years -= 1;
+      months += 12;
+    }
+
+    const parts = [];
+    if (years)  parts.push(years  + (years  === 1 ? ' year'  : ' years'));
+    if (months) parts.push(months + (months === 1 ? ' month' : ' months'));
+    if (days || !parts.length) parts.push(days + (days === 1 ? ' day' : ' days'));
+    return parts.join(' ');
+  }
+
+  // Pretty side-by-side layout (ASCII left, coloured keys right)
+  function buildHTML() {
+    const uptime = formatUptime();
+    const ascii = [
+      '      _                    ',
+      '     | |   _   _ _ __ __  __',
+      '     | |  | | | | \'_ \\\\ \\/ /',
+      '     | |__| |_| | | | |>  < ',
+      '     |_____\\__, |_| |_/_/\\_\\',
+      '           |___/            '
+    ].join('\n');
+
+    const rows = [
+      ['OS',              'Arch Linux x86_64'],
+      ['Kernel',          'Linux 7.1.8'],
+      ['Uptime',          uptime],
+      ['IDE',             'vim and VSCodium'],
+      ['Languages.Prog',  'HTML, JavaScript, CSS, C++'],
+      ['Languages.Real',  'English, Irish, Mandarin'],
+      ['Hobbies',         'programming, writing alt history'],
+      ['Contact.Discord', 'theprogrammerofalltime'],
+      ['CPU',             'AMD Ryzen 9 7900 (24) @ 5.49 GHz'],
+      ['GPU',             'AMD Radeon RX 7800 XT [Discrete]'],
+      ['Memory',          '32 GB DDR5 6000 MT/s CL30']
+    ];
+
+    let info = '<div class="ff-host">lynx@web</div><div class="ff-rule">─────────</div>';
+    rows.forEach(function (r) {
+      info += '<div class="ff-row"><span class="ff-key">' + r[0] + '</span><span class="ff-sep">: </span><span class="ff-val">' + r[1] + '</span></div>';
+    });
+
+    return '<div class="ff-layout"><pre class="ff-ascii">' + ascii + '</pre><div class="ff-info">' + info + '</div></div>';
+  }
+
+  // Type the command character by character
+  let i = 0;
+  function typeCmd() {
+    if (i < command.length) {
+      cmdEl.textContent += command.charAt(i);
+      i += 1;
+      setTimeout(typeCmd, 60 + Math.random() * 45);
+    } else {
+      setTimeout(runFastfetch, 320);
+    }
+  }
+
+  function runFastfetch() {
+    cursorEl.style.display = 'none';
+    outputEl.hidden = false;
+    outputEl.innerHTML = buildHTML();
+
+    // Stagger the info rows for a "loading" feel
+    const rows = outputEl.querySelectorAll('.ff-row, .ff-host, .ff-rule');
+    rows.forEach(function (el) { el.style.opacity = '0'; });
+
+    let k = 0;
+    function reveal() {
+      if (k < rows.length) {
+        rows[k].style.opacity = '1';
+        rows[k].style.transition = 'opacity 0.12s ease';
+        k += 1;
+        setTimeout(reveal, 45 + Math.random() * 30);
+      } else {
+        // Final prompt + reveal the rest of the page
+        const final = document.createElement('div');
+        final.className = 'prompt-line after-run';
+        final.innerHTML = '<span class="prompt">[lynx@web ~]$</span> <span class="cursor blink-cursor">█</span>';
+        outputEl.parentNode.appendChild(final);
+
+        afterEl.hidden = false;
+        // force reflow then add class for fade
+        void afterEl.offsetWidth;
+        afterEl.classList.add('reveal');
+      }
+    }
+    // small pause so the ASCII is visible first
+    setTimeout(reveal, 180);
+  }
+
+  setTimeout(typeCmd, 420);
+})();
+</script><script src="js/terminal.js"></script></body></html>

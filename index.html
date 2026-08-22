@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome — Lynx</title>
+<meta name="description" content="Lynx — a terminal-style personal site.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-terminal-command="welcome" data-active-tab="welcome">
+<div class="terminal-desktop">
+  <aside class="terminal-sidebar">
+    <div class="sidebar-brand"><span class="brand-mark">⌁</span><div><strong>lynx@web</strong><small>terminal desktop</small></div></div>
+    <div class="sidebar-section-label">SESSIONS</div>
+    <nav class="site-nav"><a href="index.html" class="active"><span class="nav-index">01</span><span>welcome</span></a>
+<a href="home.html"><span class="nav-index">02</span><span>fastfetch</span></a>
+<a href="about.html"><span class="nav-index">03</span><span>about</span></a>
+<a href="projects.html"><span class="nav-index">04</span><span>projects</span></a>
+<a href="portfolio.html"><span class="nav-index">05</span><span>portfolio</span></a>
+<a href="alt-history/index.html" class="nav-special"><span class="nav-index">06</span><span>archive</span></a></nav>
+    <div class="sidebar-spacer"></div>
+    <div class="sidebar-help"><span>↑↓</span> navigate<br><span>↵</span> open session</div>
+  </aside>
+  <div class="terminal-stage">
+    <header class="stage-bar"><span class="stage-title">tty1</span><span class="stage-path">~/welcome</span><span class="stage-state">● ONLINE</span></header>
+    <main>
+      <section class="terminal-window page-window boot-window">
+        <div class="terminal-titlebar"><span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-path"><strong>lynx@web</strong>:~</span></div>
+        <div class="terminal-body">
+          <div class="boot-line"><span class="prompt">[lynx@web ~]$</span> <span class="boot-command"></span><span class="boot-cursor">█</span></div>
+          <div class="boot-content">
+            <div class="welcome-hero">
+              <span class="eyebrow">Session ready</span>
+              <h1>Welcome to my little corner of the web.</h1>
+              <p class="lede">This site is intentionally built like a terminal desktop. Pick a session from the left, or treat each tab like a command you just ran.</p>
+            </div>
+            <div class="terminal-grid">
+              <a class="terminal-launch" href="home.html"><span class="launch-prompt">[lynx@web ~]$</span><strong>fastfetch</strong><small>system information · animated</small></a>
+              <a class="terminal-launch" href="about.html"><span class="launch-prompt">[lynx@web ~]$</span><strong>about</strong><small>who is Lynx?</small></a>
+              <a class="terminal-launch" href="projects.html"><span class="launch-prompt">[lynx@web ~]$</span><strong>projects</strong><small>things I've built</small></a>
+              <a class="terminal-launch" href="portfolio.html"><span class="launch-prompt">[lynx@web ~]$</span><strong>portfolio</strong><small>games · tools · showreels</small></a>
+              <a class="terminal-launch terminal-launch-special" href="alt-history/index.html"><span class="launch-prompt">[lynx@web ~]$</span><strong>archive</strong><small>The Old World Eternal</small></a>
+            </div>
+            <div class="shell-prompt"><span class="prompt">[lynx@web ~]$</span> <span class="cursor blink-cursor">█</span></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer><div class="footer-terminal">github pages · static site · no build system required</div></footer>
+  </div>
+</div>
+<script src="js/terminal.js"></script>
+</body>
+</html>
