@@ -284,6 +284,27 @@ Open the uses session for the full setup list.`
     return aliases[name] || null;
   }
 
+
+  let quotesLoading = null;
+  function loadQuotesPool() {
+    if (window.LYNX_QUOTES && window.LYNX_QUOTES.length) {
+      return Promise.resolve(window.LYNX_QUOTES);
+    }
+    if (quotesLoading) return quotesLoading;
+    quotesLoading = new Promise(function (resolve) {
+      var s = document.createElement('script');
+      s.src = 'js/quotes-data.js';
+      s.onload = function () {
+        resolve(window.LYNX_QUOTES || []);
+      };
+      s.onerror = function () {
+        resolve([]);
+      };
+      document.head.appendChild(s);
+    });
+    return quotesLoading;
+  }
+
   const commands = {
     help: function (args) {
       if (args[0]) {
@@ -433,56 +454,70 @@ Open the uses session for the full setup list.`
 
     fortune: function (args) {
       args = args || [];
-      const pool = (window.LYNX_QUOTES && window.LYNX_QUOTES.length)
-        ? window.LYNX_QUOTES
-        : QUOTES.map(function (s) { return { t: s, a: '' }; });
-      const dailyCount = window.LYNX_QUOTES_DAILY_COUNT || 5;
-
-      function mulberry32(a) {
-        return function () {
-          a |= 0; a = (a + 0x6D2B79F5) | 0;
-          var t = Math.imul(a ^ (a >>> 15), 1 | a);
-          t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-        };
-      }
-      function daySeed() {
-        var now = new Date();
-        return Math.floor(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()) / 86400000);
-      }
-      function pickDaily(n) {
-        var rand = mulberry32(daySeed() ^ 0x9E3779B9);
-        var idxs = [];
-        for (var i = 0; i < pool.length; i++) idxs.push(i);
-        n = Math.min(n, idxs.length);
-        for (var i = 0; i < n; i++) {
-          var j = i + Math.floor(rand() * (idxs.length - i));
-          var tmp = idxs[i]; idxs[i] = idxs[j]; idxs[j] = tmp;
+      function runWithPool(pool) {
+        if (!pool || !pool.length) {
+          pool = QUOTES.map(function (s) { return { t: s, a: '' }; });
         }
-        return idxs.slice(0, n).map(function (ix) { return pool[ix]; });
+        const dailyCount = window.LYNX_QUOTES_DAILY_COUNT || 5;
+
+        function mulberry32(a) {
+          return function () {
+            a |= 0; a = (a + 0x6D2B79F5) | 0;
+            var t = Math.imul(a ^ (a >>> 15), 1 | a);
+            t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+            return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+          };
+        }
+        function daySeed() {
+          var now = new Date();
+          return Math.floor(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()) / 86400000);
+        }
+        function pickDaily(n) {
+          var rand = mulberry32(daySeed() ^ 0x9E3779B9);
+          var idxs = [];
+          for (var i = 0; i < pool.length; i++) idxs.push(i);
+          n = Math.min(n, idxs.length);
+          for (var i = 0; i < n; i++) {
+            var j = i + Math.floor(rand() * (idxs.length - i));
+            var tmp = idxs[i]; idxs[i] = idxs[j]; idxs[j] = tmp;
+          }
+          return idxs.slice(0, n).map(function (ix) { return pool[ix]; });
+        }
+
+        if (args[0] === 'random' || args[0] === '-r') {
+          var pick = pool[Math.floor(Math.random() * pool.length)];
+          if (typeof pick === 'string') print(pick, 'shell-accent');
+          else print('"' + pick.t + '" — ' + pick.a, 'shell-accent');
+          scrollToBottom();
+          return;
+        }
+        if (args[0] === 'all' || args[0] === 'today') {
+          var set = pickDaily(dailyCount);
+          print('Quotes for today (' + dailyCount + ' of ' + pool.length + '):', 'shell-muted');
+          set.forEach(function (q, i) {
+            if (typeof q === 'string') print((i + 1) + '. ' + q, 'shell-accent');
+            else print((i + 1) + '. "' + q.t + '" — ' + q.a, 'shell-accent');
+          });
+          scrollToBottom();
+          return;
+        }
+        var today = pickDaily(dailyCount);
+        var one = today[Math.floor(Math.random() * today.length)];
+        if (typeof one === 'string') print(one, 'shell-accent');
+        else print('"' + one.t + '" — ' + one.a, 'shell-accent');
+        print('(fortune today · fortune random · pool: ' + pool.length + ')', 'shell-muted');
+        scrollToBottom();
       }
 
-      if (args[0] === 'random' || args[0] === '-r') {
-        var pick = pool[Math.floor(Math.random() * pool.length)];
-        if (typeof pick === 'string') print(pick, 'shell-accent');
-        else print('"' + pick.t + '" — ' + pick.a, 'shell-accent');
-        return;
-      }
-      if (args[0] === 'all' || args[0] === 'today') {
-        var set = pickDaily(dailyCount);
-        print('Quotes for today (' + dailyCount + ' of ' + pool.length + '):', 'shell-muted');
-        set.forEach(function (q, i) {
-          if (typeof q === 'string') print((i + 1) + '. ' + q, 'shell-accent');
-          else print((i + 1) + '. "' + q.t + '" — ' + q.a, 'shell-accent');
+      if (window.LYNX_QUOTES && window.LYNX_QUOTES.length) {
+        runWithPool(window.LYNX_QUOTES);
+      } else {
+        print('Loading quote pool…', 'shell-muted');
+        loadQuotesPool().then(function (pool) {
+          runWithPool(pool);
+          input.focus();
         });
-        return;
       }
-      // default: one of today's quotes (rotates if you run fortune several times via random among daily)
-      var today = pickDaily(dailyCount);
-      var one = today[Math.floor(Math.random() * today.length)];
-      if (typeof one === 'string') print(one, 'shell-accent');
-      else print('"' + one.t + '" — ' + one.a, 'shell-accent');
-      print('(fortune today · fortune random · pool: ' + pool.length + ')', 'shell-muted');
     },
     quote: function () { commands.fortune(); },
 

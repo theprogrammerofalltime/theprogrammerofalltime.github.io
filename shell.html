@@ -45,21 +45,20 @@
           <span class="terminal-dot"></span>
           <span class="terminal-path"><strong>lynx@web</strong>:~/shell — interactive</span>
         </div>
-        <div class="terminal-body shell-terminal-body">
+        <div class="terminal-body shell-terminal-body" id="shell-body">
           <div id="shell-output" class="shell-output" aria-live="polite"></div>
           <form id="shell-form" class="shell-input-line" autocomplete="off" spellcheck="false">
             <label class="shell-prompt-label" for="shell-input">
               <span class="prompt" id="shell-prompt">[lynx@web ~]$</span>
             </label>
-            <input id="shell-input" class="shell-input" type="text" autofocus aria-label="Terminal command input" />
+            <input id="shell-input" class="shell-input" type="text" name="cmd" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" autofocus aria-label="Terminal command input" />
           </form>
         </div>
       </section>
     </main>
-    <footer><div class="footer-terminal">github pages · static site · type help to begin</div></footer>
+    <footer><div class="footer-terminal">type help · ls · open &lt;session&gt; · fortune</div></footer>
   </div>
 </div>
-<script src="js/quotes-data.js"></script>
 <script src="js/terminal.js"></script>
 <script src="js/shell.js"></script>
 </body>
