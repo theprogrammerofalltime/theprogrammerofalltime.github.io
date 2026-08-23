@@ -1211,7 +1211,9 @@ body { overflow: hidden; }
   display:flex; flex-direction:column; min-width:0; padding:18px 12px;
   background:#0d0d0d; border-right:1px solid var(--border);
 }
-.sidebar-brand { display:flex; align-items:center; gap:10px; padding:10px 9px 18px; border-bottom:1px solid var(--border); }
+.sidebar-brand { display:flex; align-items:center; gap:10px; padding:10px 9px 18px; border-bottom:1px solid var(--border); text-decoration:none; color:inherit; transition:opacity .15s ease; }
+a.sidebar-brand:hover { opacity:.85; }
+a.sidebar-brand:hover strong { color:var(--accent); }
 .brand-mark { color:var(--accent); font-size:1.35rem; }
 .sidebar-brand strong { display:block; color:var(--heading); font-size:.82rem; }
 .sidebar-brand small { display:block; color:var(--text-dim); font-size:.58rem; margin-top:2px; }
