@@ -37,6 +37,7 @@
     contact:   { path: 'contact.html',            desc: 'discord · github' },
     gallery:   { path: 'gallery.html',            desc: 'screenshots · stills' },
     quotes:    { path: 'quotes.html',             desc: 'daily fortune pool' },
+    dino:      { path: 'dino.html',               desc: 'chrome offline runner' },
     archive:   { path: 'alt-history/index.html',  desc: 'The Old World Eternal' },
     shell:     { path: 'shell.html',              desc: 'interactive terminal (you are here)' }
   };
@@ -271,6 +272,9 @@ Open the uses session for the full setup list.`
       experiments: 'lab',
       links: 'bookmarks',
       fortune: 'quotes',
+      runner: 'dino',
+      chrome: 'dino',
+      game: 'dino',
       lore: 'archive',
       wiki: 'archive',
       'alt-history': 'archive',

@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shell — Lynx</title>
-<meta name="description" content="Interactive terminal session on lynx@web.">
+<title>Dino — Lynx</title>
+<meta name="description" content="Chrome dino game session on lynx@web.">
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body data-terminal-command="shell" data-active-tab="shell">
+<body data-terminal-command="dino" data-active-tab="dino">
 <div class="terminal-desktop">
   <aside class="terminal-sidebar">
     <a class="sidebar-brand" href="https://github.com/theprogrammerofalltime" target="_blank" rel="noopener noreferrer" title="GitHub — theprogrammerofalltime"><span class="brand-mark">⌁</span><div><strong>lynx@web</strong><small>terminal desktop</small></div></a>
@@ -26,41 +26,51 @@
 <a href="contact.html"><span class="nav-index">12</span><span>contact</span></a>
 <a href="gallery.html"><span class="nav-index">13</span><span>gallery</span></a>
 <a href="quotes.html"><span class="nav-index">14</span><span>quotes</span></a>
-<a href="dino.html" class="nav-special"><span class="nav-index">15</span><span>dino</span></a>
+<a href="dino.html" class="active nav-special"><span class="nav-index">15</span><span>dino</span></a>
 <a href="alt-history/index.html" class="nav-special"><span class="nav-index">16</span><span>archive</span></a>
-<a href="shell.html" class="active nav-special"><span class="nav-index">17</span><span>shell</span></a></nav>
+<a href="shell.html" class="nav-special"><span class="nav-index">17</span><span>shell</span></a></nav>
     <div class="sidebar-spacer"></div>
-    <div class="sidebar-help"><span>↑↓</span> history<br><span>Tab</span> complete<br><span>Ctrl+L</span> clear</div>
+    <div class="sidebar-help"><span>Space</span> jump<br><span>↓</span> duck</div>
   </aside>
   <div class="terminal-stage">
     <header class="stage-bar">
-      <span class="stage-title">tty2</span>
-      <span class="stage-path">~/shell</span>
+      <span class="stage-title">tty3</span>
+      <span class="stage-path">~/dino</span>
       <span class="stage-state">● ONLINE</span>
     </header>
-    <main class="shell-main">
-      <section class="terminal-window page-window shell-window">
+    <main class="dino-main">
+      <section class="terminal-window page-window dino-window">
         <div class="terminal-titlebar">
           <span class="terminal-dot"></span>
           <span class="terminal-dot"></span>
           <span class="terminal-dot"></span>
-          <span class="terminal-path"><strong>lynx@web</strong>:~/shell — interactive</span>
+          <span class="terminal-path"><strong>lynx@web</strong>:~/dino — chromedino</span>
         </div>
-        <div class="terminal-body shell-terminal-body" id="shell-body">
-          <div id="shell-output" class="shell-output" aria-live="polite"></div>
-          <form id="shell-form" class="shell-input-line" autocomplete="off" spellcheck="false">
-            <label class="shell-prompt-label" for="shell-input">
-              <span class="prompt" id="shell-prompt">[lynx@web ~]$</span>
-            </label>
-            <input id="shell-input" class="shell-input" type="text" name="cmd" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" autofocus aria-label="Terminal command input" />
-          </form>
+        <div class="terminal-body dino-terminal-body">
+          <div class="boot-line"><span class="prompt">[lynx@web ~]$</span> <span class="boot-command"></span><span class="boot-cursor">█</span></div>
+          <div class="boot-content">
+            <span class="eyebrow">Arcade</span>
+            <h1>Chrome dino</h1>
+            <p class="lede">Offline runner, embedded. Space to jump · Down to duck. Click the game area first if keys do nothing.</p>
+            <div class="dino-frame-wrap">
+              <iframe
+                class="dino-frame"
+                src="https://chromedino.com/embed/"
+                title="Chrome Dino Game"
+                loading="lazy"
+                frameborder="0"
+                scrolling="no"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <p class="lede" style="margin-top:0.8rem;color:var(--text-dim);font-size:0.72rem">Hosted by chromedino.com · not affiliated with Google</p>
+          </div>
         </div>
       </section>
     </main>
-    <footer><div class="footer-terminal">type help · ls · open &lt;session&gt; · fortune</div></footer>
+    <footer><div class="footer-terminal">github pages · static site · space to jump</div></footer>
   </div>
 </div>
 <script src="js/terminal.js"></script>
-<script src="js/shell.js"></script>
 </body>
 </html>

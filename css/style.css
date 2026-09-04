@@ -1937,3 +1937,36 @@ input.shell-input,
 
 .terminal-stage .shell-main { flex: 1 1 auto; min-height: 0; }
 .terminal-stage:has(.shell-main) { overflow: hidden; }
+
+/* Chrome dino session */
+.dino-main {
+  max-width: none;
+  width: 100%;
+}
+.dino-window {
+  max-width: 980px;
+  margin: 0 auto;
+}
+.dino-frame-wrap {
+  position: relative;
+  width: 100%;
+  height: min(420px, 55vh);
+  margin-top: 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  overflow: hidden;
+}
+.dino-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  z-index: 1;
+}
+@media (max-width: 900px) {
+  .dino-frame-wrap {
+    height: min(320px, 50vh);
+  }
+}
