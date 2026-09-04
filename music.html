@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lab — Lynx</title>
-<meta name="description" content="Lynx — Lab session.">
+<title>Music — Lynx</title>
+<meta name="description" content="What Lynx is listening to.">
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body data-terminal-command="lab" data-active-tab="lab">
+<body data-terminal-command="music" data-active-tab="music">
 <div class="terminal-desktop">
   <aside class="terminal-sidebar">
     <a class="sidebar-brand" href="https://github.com/theprogrammerofalltime" target="_blank" rel="noopener noreferrer" title="GitHub — theprogrammerofalltime"><span class="brand-mark">⌁</span><div><strong>lynx@web</strong><small>terminal desktop</small></div></a>
@@ -21,65 +21,60 @@
 <a href="skills.html"><span class="nav-index">07</span><span>skills</span></a>
 <a href="uses.html"><span class="nav-index">08</span><span>uses</span></a>
 <a href="journal.html"><span class="nav-index">09</span><span>journal</span></a>
-<a href="lab.html" class="active"><span class="nav-index">10</span><span>lab</span></a>
+<a href="lab.html"><span class="nav-index">10</span><span>lab</span></a>
 <a href="bookmarks.html"><span class="nav-index">11</span><span>bookmarks</span></a>
 <a href="contact.html"><span class="nav-index">12</span><span>contact</span></a>
 <a href="gallery.html"><span class="nav-index">13</span><span>gallery</span></a>
 <a href="quotes.html"><span class="nav-index">14</span><span>quotes</span></a>
 <a href="dino.html" class="nav-special"><span class="nav-index">15</span><span>dino</span></a>
-<a href="music.html" class="nav-special"><span class="nav-index">16</span><span>music</span></a>
+<a href="music.html" class="active nav-special"><span class="nav-index">16</span><span>music</span></a>
 <a href="alt-history/index.html" class="nav-special"><span class="nav-index">17</span><span>archive</span></a>
 <a href="shell.html" class="nav-special"><span class="nav-index">18</span><span>shell</span></a></nav>
     <div class="sidebar-spacer"></div>
     <div class="sidebar-help"><span>↑↓</span> navigate<br><span>↵</span> open session</div>
   </aside>
   <div class="terminal-stage">
-    <header class="stage-bar"><span class="stage-title">tty1</span><span class="stage-path">~/lab</span><span class="stage-state">● ONLINE</span></header>
+    <header class="stage-bar">
+      <span class="stage-title">tty1</span>
+      <span class="stage-path">~/music</span>
+      <span class="stage-state">● ONLINE</span>
+    </header>
     <main>
 <section class="terminal-window page-window">
   <div class="terminal-titlebar">
       <span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-dot"></span>
-      <span class="terminal-path"><strong>lynx@web</strong>:~/lab</span>
+      <span class="terminal-path"><strong>lynx@web</strong>:~/music</span>
   </div>
   <div class="terminal-body">
     <div class="boot-line"><span class="prompt">[lynx@web ~]$</span> <span class="boot-command"></span><span class="boot-cursor">█</span></div>
     <div class="boot-content">
+<span class="eyebrow">Listening</span>
+<h1>Music</h1>
+<p class="lede">Scrobbles from Spotify via Last.fm. Updates about every 45 seconds.</p>
 
-<span class="eyebrow">Experiments</span>
-<h1>Lab</h1>
-<p class="lede">Unfinished or half-finished ideas. Lower stakes than projects.</p>
+<article class="status-card music-now">
+  <span class="tag">last.fm</span>
+  <h3>Listening</h3>
+  <div class="music-widget" id="spotify-widget">
+    <p class="music-placeholder">Loading Last.fm…</p>
+  </div>
+</article>
 
-<div class="file-grid">
-  <article class="file-card">
-    <span class="tag">web</span>
-    <h3>Interactive shell</h3>
-    <p>Shipped as session 17 — was a lab experiment first. Type <code>open shell</code>.</p>
-  </article>
-  <article class="file-card">
-    <span class="tag">game</span>
-    <h3>Pygame prototypes</h3>
-    <p>Small mechanics tests that may or may not graduate to portfolio.</p>
-  </article>
-  <article class="file-card">
-    <span class="tag">lore</span>
-    <h3>Archive expansions</h3>
-    <p>New figures, events, and realms for The Old World Eternal before they hit the public index.</p>
-  </article>
-  <article class="file-card">
-    <span class="tag">ui</span>
-    <h3>Theme variants</h3>
-    <p>Matrix / amber / ice colorways for the terminal UI — not toggled yet.</p>
-  </article>
-</div>
-
+<article class="status-card" style="margin-top:12px">
+  <span class="tag">profiles</span>
+  <h3>Links</h3>
+  <p class="portfolio-links">
+    <a href="https://www.last.fm/user/TheSerufu" target="_blank" rel="noopener">last.fm/user/TheSerufu →</a>
+  </p>
+</article>
     </div>
   </div>
 </section>
     </main>
-    <footer><div class="footer-terminal">github pages · static site · no build system required</div></footer>
+    <footer><div class="footer-terminal">github pages · static site · last.fm · TheSerufu</div></footer>
   </div>
 </div>
 <script src="js/terminal.js"></script>
-
+<script src="js/music-widget.js"></script>
 </body>
 </html>

@@ -38,6 +38,7 @@
     gallery:   { path: 'gallery.html',            desc: 'screenshots · stills' },
     quotes:    { path: 'quotes.html',             desc: 'daily fortune pool' },
     dino:      { path: 'dino.html',               desc: 'chrome offline runner' },
+    music:     { path: 'music.html',              desc: 'spotify · now playing' },
     archive:   { path: 'alt-history/index.html',  desc: 'The Old World Eternal' },
     shell:     { path: 'shell.html',              desc: 'interactive terminal (you are here)' }
   };
@@ -275,6 +276,8 @@ Open the uses session for the full setup list.`
       runner: 'dino',
       chrome: 'dino',
       game: 'dino',
+      spotify: 'music',
+      listening: 'music',
       lore: 'archive',
       wiki: 'archive',
       'alt-history': 'archive',
